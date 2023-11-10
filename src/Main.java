@@ -1,17 +1,63 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
+
+import static java.lang.Character.getName;
+
+abstract class AbstractParent {
+    private String name;
+    private int age;
+
+    public AbstractParent(String name, int age) {
+        this.name = name;
+        setAge(age);
+    }
+
+    public void setAge(int age) {
+        if (age >= 0) {
+            this.age = age;
+        } else {
+            System.out.println("Возраст не может быть отрицательным.");
+        }
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public abstract void uniqueMethod();
+
+    public void printInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+
+
+
+final class NonInheritable {
+    private String name;
+
+    public NonInheritable(String name) {
+        this.name = name;
+    }
+
+    public void uniqueMethod() {
+        System.out.println(name + " is a non-inheritable class.");
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Child1 child1Instance = new Child1("Имя первого ребенка Maxsim.", 25, "Property1Value");
+        Child2 child2Instance = new Child2("Имя второго ребёнка Sasha.", 30, "Property2Value");
+        NonInheritable nonInheritableInstance = new NonInheritable("NonInheritableName");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        child1Instance.printInfo();
+        child1Instance.uniqueMethod();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        child2Instance.printInfo();
+        child2Instance.uniqueMethod();
+
+        nonInheritableInstance.uniqueMethod();
     }
 }
